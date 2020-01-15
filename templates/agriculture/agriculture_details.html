@@ -1,0 +1,929 @@
+{% extends '_base.html'%}
+
+{% block content %}
+
+ {% with url_name=request.resolver_match.url_name  %}
+  {% if url_name == 'crops' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for crop in crops %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Crop Name: {{crop.crop_name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{crop.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ crop.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{crop.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+</div></div>
+
+
+   <!--Snippets for seeds-->
+   {% elif url_name == 'seeds' %}
+    <div class="container-fluid">
+        <div class="row">
+               {% for seed in seeds %}
+                <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Seeds Name: {{seed.seed_name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold"><a href="">{{seed.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ seed.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{seed.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+            {% endfor %}
+    </div></div>
+
+   <!--Snippets for umbwanikiro-->
+   {% elif url_name == 'ubwanikiro' %}
+    <div class="container-fluid">
+        <div class="row">
+               {% for ubwanik in ubwanikiro %}
+                <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Ubwanikiro : {{ubwanik.ubwanikiro}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold"><a href="">View District Status</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ ubwanik.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{ubwanik.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+            {% endfor %}
+    </div></div>
+
+    <!-- snippets for Terrassis    -->
+    {% elif url_name == 'terassis' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for terrass in terassis %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>{{terrass.name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{terrass.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ terrass.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{terrass.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+    </div></div>
+
+
+    <!-- snippets for Banana    -->
+    {% elif url_name == 'banana' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for banana in bananas %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>{{banana.name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{banana.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ banana.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{banana.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+    </div></div>
+
+
+     <!-- snippets for Fertilizers    -->
+    {% elif url_name == 'fertilizer' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for fertilizer in fertilizers %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Fertilizer Name:  {{fertilizer.name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{fertilizer.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ fertilizer.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{fertilizer.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+    </div></div>
+
+
+   <!-- snippets for Trainings    -->
+    {% elif url_name == 'trainings' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for training in trainings %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Name:  {{training.training_name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{training.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ training.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{training.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+    </div></div>
+
+
+    <!-- snippets for Vaccinations    -->
+    {% elif url_name == 'vaccinations' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for vaccination in vaccinations %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Vaccination Name:  {{vaccination.vaccination_name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{vaccination.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ vaccination.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{vaccination.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+    </div></div>
+
+
+    <!-- snippets for Insemination    -->
+    {% elif url_name == 'insemination' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for insemination in inseminations %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Number of Insemination:  {{insemination.insemination}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{insemination.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ insemination.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{insemination.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+    </div></div>
+
+
+    <!-- snippets for InkaZizakurikiranwa    -->
+    {% elif url_name == 'inkazizakurikiranwa' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for inka in inkazizakurikiranwa %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Number of Cows:  {{inka.inka_zizakurikiranwa}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{inka.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ inka.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{inka.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+    </div></div>
+
+    <!-- snippets for Girinka    -->
+    {% elif url_name == 'girinka' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for inka in girinka %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Number of Cows:  {{inka.girinka}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{inka.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ inka.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{inka.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+    </div></div>
+
+
+    <!-- snippets for Imihigo    -->
+    {% elif url_name == 'imihigo' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for umuhigo in imihigo %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>{{umuhigo.umuhigo}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{umuhigo.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ umuhigo.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{umuhigo.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+    </div></div>
+
+
+    <!-- snippets for Ha_irrigated    -->
+    {% elif url_name == 'irrigation' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for ha in irrigation %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Ha Irrigated: {{ha.ha_irrigated}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{ha.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ ha.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{ha.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+    </div></div>
+
+
+    <!-- snippets for Number of Pumps    -->
+    {% elif url_name == 'pumps' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for pump in pumps %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Number of Pumps: {{pump.number_of_pumps}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{pump.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ pump.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{pump.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+    </div></div>
+
+
+    <!-- snippets for improved Seeds   -->
+    {% elif url_name == 'improved_seeds' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for seeds in improved_seeds %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Number of Improved Seeds: {{seeds.target}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{seeds.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ seeds.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{seeds.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+    </div></div>
+
+
+
+<!------------------------snippets for Agriculture and animal in each sector --------------------------->
+
+<!--snippetes for crops per each sector-->
+  {% elif url_name == 'crop_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for crop in crop_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Crop Name: {{crop.crop_name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{crop.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ crop.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{crop.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+<!--snippetes for Seeds per each sector-->
+  {% elif url_name == 'seed_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for seed in seed_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Seed Name: {{seed.seed_name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{seed.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ seed.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{seed.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+<!--snippetes for Ubwanikiro per each sector-->
+  {% elif url_name == 'ubwanikiro_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for ubwanikiro in ubwanikiro_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Ubwanikiro: {{ubwanikiro.ubwanikiro}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{ubwanikiro.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ ubwanikiro.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{ubwanikiro.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+
+<!--snippetes for Unused Terrassis per each sector-->
+  {% elif url_name == 'terrassis_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for terrassis in terrassis_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>{{terrassis.name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{terrassis.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ terrassis.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{terrassis.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+<!--snippetes for Banana and rehabilitation per each sector-->
+  {% elif url_name == 'banana_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for banana in banana_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>{{banana.name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{banana.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ banana.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{banana.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+
+<!--snippetes for improved seeds per each sector-->
+  {% elif url_name == 'improved_seed_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for seed in improved_seed_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Number of Fertilizer Improved Seeds: {{seed.target}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{seed.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ seed.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{seed.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+<!--snippetes for insemination per each sector-->
+  {% elif url_name == 'insemination_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for insemination in insemination_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Number of Insemination: {{insemination.insemination}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{insemination.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ insemination.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{insemination.insemination}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+
+<!--snippetes for Girinka per each sector-->
+  {% elif url_name == 'girinka_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for inka in girinka_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Umubare W'inka: {{inka.girinka}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{inka.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ inka.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{inka.girinka}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+
+<!--snippetes for inkazizakurikiranwa per each sector-->
+  {% elif url_name == 'inkazizakurikiranwa_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for inka in inkazizakurikiranwa_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Umubare W'inka: {{inka.inka_zizakurikiranwa}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{inka.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ inka.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{inka.inka_zizakurikiranwa}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+<!--snippetes for Trainings per each sector-->
+  {% elif url_name == 'training_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for training in training_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>{{training.training_name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{training.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ training.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{training.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+<!--snippetes for Fertilizer per each sector-->
+  {% elif url_name == 'fertilizer_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for fertilizer in fertilizer_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Fertilizer Name: {{fertilizer.name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{fertilizer.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ fertilizer.achieved }} Kg</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{fertilizer.target}} Kg</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+
+<!--snippetes for Vaccination per each sector-->
+  {% elif url_name == 'vaccination_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for vaccination in vaccination_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Vaccination Name: {{vaccination.vaccination_name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{vaccination.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ vaccination.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{vaccination.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+
+<!--snippetes for Irrigation per each sector-->
+  {% elif url_name == 'irrigated_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for irrigation in irrigation_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Ha To be Irrigated: {{irrigation.ha_irrigated}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{irrigation.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ irrigation.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{irrigation.ha_irrigated}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+
+<!--snippettes for Number of pumps per each sector-->s
+  {% elif url_name == 'number_of_pump_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for pump in number_of_pump_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>Number of Pumps: {{pump.number_of_pumps}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{pump.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ pump.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{pump.number_of_pumps}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+
+<!--snippettes for Imihigo per each sector-->
+  {% elif url_name == 'imihigo_sector' %}
+    <div class="container-fluid">
+          <div class="row">
+             {% for umuhigo in imihigo_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>{{umuhigo.umuhigo}}: {{umuhigo.target}} &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold">Sector Name: <a href="">{{umuhigo.sector}}</a></small>
+                        </h5><br>
+
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ umuhigo.achieved }}</strong><br><small>Ibyakozwe</small></div>
+                                 </div>
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{umuhigo.target}}</strong><br><small>Ibisigaye</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+             {% endfor %}
+  </div></div>
+  {% endif %}
+{% endwith %}
+
+{% endblock %}

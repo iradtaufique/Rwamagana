@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+
+{% load static %}
+{% block content %}
+<div class="container">
+<div class="card">
+<div class="card-header" style="background-color:#796AEE;"><h6 class="text-white">Upload Excel File</h6></div>
+    <div class="card-body p-lg-5">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>Dosiye y' Ibikorwa</label>
+            <div class="custom-file">
+                <input type="file" name="file" class="custom-file-input" id="validatedCustomFile" required>
+                <label class="custom-file-label" for="validatedCustomFile">Choose xlsx file...</label>
+            </div>
+            <button class="btn btn-sm btn-success mt-5" type="submit">Import</button>
+        </form>
+    </div>
+</div></div>
+{% endblock  %}
+    

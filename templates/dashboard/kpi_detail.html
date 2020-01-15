@@ -1,0 +1,118 @@
+{% extends '_base.html' %}
+{% block content %}
+
+<div class="container">
+{% with url_name=request.resolver_match.url_name  %}
+
+{% if url_name == 'kpi_charts' %}
+<div id="container"></div>
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script>
+    Highcharts.chart('container',{
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: [{{ kpiname }}]
+        },
+        xAxis: {
+            categories: [
+            {% for item in dataset %}'{{item.sector__name}} sector {{item.kpi__name}}'{% if not forloop.last%},{%endif%}{% endfor %}
+            ]
+        },
+        series: [{
+            name: 'Ibyakozwe',
+            data: [
+            {%for item in dataset %}{{item.achiev}}{%if not forloop.last %},{% endif %}{%endfor%}
+            ],
+            color: 'green'
+        }, {
+            name: 'Ibitarakorwa' ,
+            data: [
+            {% for item in dataset %}{{ item.targ}}{% if not forloop.last%},{%endif%}{%endfor%}
+            ],
+            color: 'red'
+        }]
+    });
+    {{ kpiname }}
+</script>
+
+{% elif url_name == 'sector_charts' %}
+
+<div id="container"></div>
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script>
+    Highcharts.chart('container',{
+
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: [{{ kpiname }}]
+        },
+        xAxis: {
+            categories: [
+            {% for item in dataset %}' {{item.kpi__name}}'{% if not forloop.last%},{%endif%}{% endfor %}
+            ]
+        },
+        series: [{
+            name: 'Ibyakozwe',
+
+            data: [
+            {%for item in dataset %}{{item.achiev}}{%if not forloop.last %},{% endif %}{%endfor%}
+            ],
+            color: 'green'
+        }, {
+            name: 'Ibitarakorwa' ,
+            data: [
+            {% for item in dataset %}{{ item.targ}}{% if not forloop.last%},{%endif%}{%endfor%}
+            ],
+            color: 'red'
+        }]
+    });
+    {{ kpiname }}
+</script>
+
+
+
+<!---------------------------------------------------->
+{% elif url_name == 'kpi-detail' %}
+
+<div id="container"></div>
+<script src="https://code.highcharts.com/highcharts.src.js"></script>
+<script>
+    Highcharts.chart('container',{
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: [{{ kpiname }}]
+        },
+        xAxis: {
+            categories: [
+            {% for item in dataset %}'{{item.sector__name}} sector {{item.kpi__name}}'{% if not forloop.last%},{%endif%}{% endfor %}
+            ]
+        },
+        series: [{
+            name: 'Ibyakozwe',
+            data: [
+            {%for item in dataset %}{{item.achiev}}{%if not forloop.last %},{% endif %}{%endfor%}
+            ],
+            color: 'green'
+        }, {
+            name: 'Ibitarakorwa' ,
+            data: [
+            {% for item in dataset %}{{ item.targ}}{% if not forloop.last%},{%endif%}{%endfor%}
+            ],
+            color: 'red'
+        }]
+    });
+    {{ kpiname }}
+</script>
+<!---------------------------------------------------->
+
+{%endif%}
+{%endwith%}
+</div>
+{% endblock content %}
+</div>

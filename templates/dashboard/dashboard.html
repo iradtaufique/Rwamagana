@@ -1,0 +1,166 @@
+{% extends "_base.html" %}
+{% load mathfilters %}
+
+{% block content %}
+
+    <div class="overdue container">
+    {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible fade show " role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    </div>
+
+
+  <!-- Client Section-->
+  <section class="client no-padding-top">
+    <div class="container-fluid">
+      <div class="row">
+
+      {% if user.user_profile.role == 3 and user.user_profile.role == 2 %}
+
+           <div class="container text-center">
+              <div class="col-lg-12 bg-white p-3 mb-2">
+                  {% comment %}TODO: make date dynamic {% endcomment %}
+                  <h3>Rwamagana District Human Security Issues - November 2019 </h3>
+              </div>
+           </div>
+
+           {% for foo in achieved_total %}
+
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>{{foo.kpi__name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold"><a href="{% url 'kpi_charts' foo.kpi_id %}">View District Status</a></small>
+                        </h5>
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ foo.achieved }}</strong><br><a href="{% url 'ibyakozwe' foo.kpi_id %}"><small class="text-success">Ibyakozwe</small></a> </div>
+                                 </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{ foo.target|sub:foo.achieved }}</strong><br><a href="{% url 'ibisigaye' foo.kpi_id %}"><small class="text-success">Ibitarakorwa</small></a> </div>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{ foo.target }}</strong><br><small class="text-success">Target</small></div>
+                                </div>
+                            </div>
+
+                         </div>
+
+                     </div>
+                  </div>
+              </div>
+
+
+
+           {% endfor %}
+
+      {% else %}
+
+      <!--if user is from sector-->
+      {% if user.user_profile.role == 1 %}
+          <div class="container text-center">
+              <div class="col-lg-12 bg-white p-3 mb-2">
+                  <h3>{{user.user_profile.sector}} Sector Human Security issues </h3>
+              </div>
+           </div>
+
+           {% for foo in achieved_sector %}
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                      <div class="card-body">
+                        <h5>{{foo.kpi__name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold"><a href="{% url 'sector_charts' foo.kpi_id %}">View Graph</a></small>
+                        </h5>
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ foo.achieved }}</strong><br><a href="{% url 'ibyakozwe_sector' foo.kpi_id %}"><small class="text-success">Ibyakozwe</small></a> </div>
+                                 </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{ foo.target|sub:foo.achieved }}</strong><br><a href="{% url 'ibisigaye_sector' foo.kpi_id %}"><small class="text-success">Ibisigaye</small></a> </div>
+                                 </div>
+
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ foo.target}}</strong><br><small>Target</small></div>
+                                 </div>
+                            </div>
+                         </div>
+                     </div>
+                  </div>
+              </div>
+           {% endfor %}
+      {% else %}
+
+          <!----------------  if user is from district    --------------------->
+          <div class="container text-center">
+              <div class="col-lg-12 bg-white p-3 mb-2">
+                  {% comment %}TODO: make date dynamic {% endcomment %}
+                  <h3>Rwamagana District Human Security Issues - November 2019 </h3>
+              </div>
+           </div>
+
+           {% for foo in achieved_total %}
+
+              <div class="col-lg-6">
+                  <div class="overdue card">
+                    <div class="card-body">
+                        <h5>{{foo.kpi__name}} &nbsp; &nbsp; <small class="font-weight-bold mr-2"></small>
+                            <small class="font-weight-bold"><a href="{% url 'kpi_charts' foo.kpi_id %}">View District Status</a></small>
+                        </h5>
+                        <div class="statistics col-lg-12 col-12">
+                            <div class="statistic d-flex justify-content-between bg-white has-shadow py-2">
+                                 <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-check"></i></div>
+                                    <div class="text"><strong>{{ foo.achieved }}</strong><br><a href="{% url 'ibyakozwe' foo.kpi_id %}"><small class="text-success">Ibyakozwe</small></a> </div>
+                                 </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <div class="icon bg-red"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{ foo.target|sub:foo.achieved }}</strong><br><a href="{% url 'ibisigaye' foo.kpi_id %}"><small class="text-success">Ibitarakorwa</small></a> </div>
+                                </div>
+
+                                <div class="d-flex justify-content-center">
+                                    <div class="icon bg-green"><i class="fa fa-times"></i></div>
+                                    <div class="text"><strong>{{ foo.target }}</strong><br><small class="text-success">Target</small></div>
+                                </div>
+                            </div>
+
+                         </div>
+
+                     </div>
+                  </div>
+              </div>
+
+
+
+           {% endfor %}
+       {% endif %}
+
+{% endif %}
+
+
+      </div>
+    </div>
+  </section>
+
+{% for cel in cells %}
+<option value="{{ cel.pk }}">{{ cel.name }}</option>
+{% endfor %}
+
+ {% endblock %}
+

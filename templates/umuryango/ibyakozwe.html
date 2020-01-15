@@ -1,0 +1,166 @@
+{% extends '_base.html' %}
+{% block content %}
+
+ {% with url_name=request.resolver_match.url_name  %}
+
+  <!----------------  snippets for ibyakozwe in in district and super_level   --------------->
+
+      {% if url_name == 'ibyakozwe' %}
+         <div class="container">
+            <table class="table table-bordered mb-0">
+              <thead class="thead-light">
+                <tr>
+                  <th>AMAZINA</th>
+                  <th>ABAGIZE UMURYANGO</th>
+                  <th>IRANGAMUNTU</th>
+                  <th>UMURENGE</th>
+                  <th>AKAGALI</th>
+                  <th>UMUDUGUDU</th>
+                  <th>Image</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in ibyakozwe %}
+
+                    <tr>
+                      <td class="align-middle ">{{ i.name }} </td>
+                      <td class="align-middle">{{ i.number_of_member }}</td>
+                      <td class="align-middle">{{ i.irangamuntu }} </td>
+                      <td class="align-middle">{{ i.sector }} </td>
+                      <td class="align-middle">{{ i.cell }} </td>
+                      <td class="align-middle">{{ i.village }} </td>
+                      <td class="align-middle"><div class="text-center"><a href="{{i.image.url}}" target="_blank"><img style="width: 30px; height: 30px" src="{{ i.image.url }}"></a> </div> </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td class="text-center font-italic" colspan="7">No Information Provided Yet</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table><br>
+         </div>
+
+
+    <!-----------------snippets for ibitarakorwa in district and super_level --------->
+
+
+      {% elif url_name == 'ibisigaye' %}
+        <div class="container">
+            <table class="table table-bordered mb-0">
+              <thead class="thead-light">
+                <tr>
+                  <th>AMAZINA</th>
+                  <th>ABAGIZE UMURYANGO</th>
+                  <th>IRANGAMUNTU</th>
+                  <th>UMURENGE</th>
+                  <th>AKAGALI</th>
+                  <th>UMUDUGUDU</th>
+                  <th>Image</th>
+{#                  <th>Change Status</th>#}
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in ibisigaye %}
+
+                    <tr>
+                      <td class="align-middle ">{{ i.name }} </td>
+                      <td class="align-middle">{{ i.number_of_member }}</td>
+                      <td class="align-middle">{{ i.irangamuntu }} </td>
+                      <td class="align-middle">{{ i.sector }} </td>
+                      <td class="align-middle">{{ i.cell }} </td>
+                      <td class="align-middle">{{ i.village }} </td>
+                      <td class="align-middle">{{ i.kpi }} </td>
+
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td class="text-center font-italic" colspan="7">No Information Provided Yet</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+         </div>
+
+
+   <!-----------------snippets for ibyakozwe in each sector --------->
+
+    {% elif url_name == 'ibyakozwe_sector' %}
+         <div class="container">
+            <table class="table table-bordered mb-0">
+              <thead class="thead-light">
+                <tr>
+                  <th>AMAZINA</th>
+                  <th>ABAGIZE UMURYANGO</th>
+                  <th>IRANGAMUNTU</th>
+                  <th>UMURENGE</th>
+                  <th>AKAGALI</th>
+                  <th>UMUDUGUDU</th>
+                  <th>Image</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in ibyakozwe_sector %}
+
+                    <tr>
+                      <td class="align-middle ">{{ i.name }} </td>
+                      <td class="align-middle">{{ i.number_of_member }}</td>
+                      <td class="align-middle">{{ i.irangamuntu }} </td>
+                      <td class="align-middle">{{ i.sector }} </td>
+                      <td class="align-middle">{{ i.cell }} </td>
+                      <td class="align-middle">{{ i.village }} </td>
+                      <td class="align-middle"><div class="text-center"><a href="{{i.image.url}}" target="_blank"><img style="width: 30px; height: 30px" src="{{ i.image.url }}"></a> </div> </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td class="text-center font-italic" colspan="7">No Information Provided Yet</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table><br>
+         </div>
+
+
+    <!-----------------snippets for ibitarakorwa in each sector --------->
+
+
+      {% elif url_name == 'ibisigaye_sector' %}
+        <div class="container">
+            <table class="table table-bordered mb-0">
+              <thead class="thead-light">
+                <tr>
+                  <th>AMAZINA</th>
+                  <th>ABAGIZE UMURYANGO</th>
+                  <th>IRANGAMUNTU</th>
+                  <th>UMURENGE</th>
+                  <th>AKAGALI</th>
+                  <th>UMUDUGUDU</th>
+                  <th>KPI Name</th>
+                  <th>Change Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in ibisigaye_sector %}
+
+                    <tr>
+                      <td class="align-middle ">{{ i.name }} </td>
+                      <td class="align-middle">{{ i.number_of_member }}</td>
+                      <td class="align-middle">{{ i.irangamuntu }} </td>
+                      <td class="align-middle">{{ i.sector }} </td>
+                      <td class="align-middle">{{ i.cell }} </td>
+                      <td class="align-middle">{{ i.village }} </td>
+                      <td class="align-middle">{{ i.kpi }} </td>
+                      <td class="align-middle"><div class="text-center"><a href="{% url 'status_change' i.id %}" class="btn btn-outline-success btn-sm">status</a></div> </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                      <td class="text-center font-italic" colspan="8">No Information Provided Yet</td>
+                    </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+         </div>
+
+     {%endif%}
+ {%endwith%}
+ {%endblock%}

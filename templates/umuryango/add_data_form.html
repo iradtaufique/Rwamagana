@@ -1,0 +1,66 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+<div class="card">
+  <div class="card-header" style="background-color:#796AEE;">
+    {% with url_name=request.resolver_match.url_name  %}
+              {% if url_name == 'family' %}
+                 <h6 class="text-white">Add Family</h6>
+                {% elif url_name == 'add_kpi' %}
+                  <h6 class="text-white">Add KPI</h6>
+              {% endif %}
+      {% endwith %}
+  </div>
+  <div class="card-body">
+    <form method="post" id="personForm" data-cells-url="{% url 'ajax_load_cells' %}" data-village-url="{% url 'ajax_load_villages' %}" novalidate enctype="multipart/form-data">
+       {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-sm btn-success">Submit</button>
+    </form>
+  </div>
+</div>
+</div>
+
+{##############    scripts for loading cells based on sector ##############}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_sector").change(function () {
+      var url = $("#personForm").attr("data-cells-url");
+      var sectorId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'sector': sectorId
+        },
+        success: function (data) {
+          $("#id_cell").html(data);
+        }
+      });
+    });
+ </script>
+
+
+{##############    scripts for loading village based on cell ##############}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script>
+    $("#id_cell").change(function () {
+      var url = $("#personForm").attr("data-village-url");
+      var cellId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'cell': cellId
+        },
+        success: function (data) {
+          $("#id_village").html(data);
+        }
+      });
+    });
+ </script>
+
+
+{% endblock %}

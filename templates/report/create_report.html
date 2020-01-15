@@ -1,0 +1,28 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+  <div class="container">
+
+    <div class="card">
+      <div class="card-body">
+          <form method="POST" enctype="multipart/form-data" autocomplete="off" class="form-horizontal" id="id_time">
+            {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-sm btn-outline-dark">Submit</button>
+          </form>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+      $(function() {
+          $('#id_time').datetimepicker({
+            format: 'MM/DD/YYYY HH:mm',
+            extraFormats: ['YYYY-MM-DD HH:mm:ss'],
+            sideBySide: true
+          });
+      });
+  </script>
+{% endblock %}

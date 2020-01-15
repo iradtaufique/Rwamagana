@@ -1,0 +1,17 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+<div class="card">
+<div class="card-header" style="background-color:#796AEE;"><h6 class="text-white">Upload Image</h6></div>
+    <div class="card-body p-lg-5">
+    <form method="post" enctype="multipart/form-data" id="imgform">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success btn-sm">Change status</button>
+            <strong class="text-small font-italic">Before you change status make sure you choose Image. </strong>
+    </form>
+    </div></div></div>
+{% endblock %}
