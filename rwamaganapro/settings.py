@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from django.contrib.messages import constants as messages
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -26,7 +26,6 @@ SECRET_KEY = '4-7oos8xexv_^m=b^!in-kuxv!bsu14l!gk4ai4nd6kn5^f#f-'
 DEBUG = True
 
 ALLOWED_HOSTS = ['157.245.247.50']
-
 
 # Application definition
 
@@ -78,7 +77,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'rwamaganapro.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -90,9 +88,9 @@ DATABASES = {
         'PASSWORD': '@Django123',
         'HOST': 'localhost',
         'PORT': '',
+
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -112,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -125,7 +122,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
