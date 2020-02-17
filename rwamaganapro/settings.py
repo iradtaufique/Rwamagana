@@ -25,7 +25,7 @@ SECRET_KEY = '4-7oos8xexv_^m=b^!in-kuxv!bsu14l!gk4ai4nd6kn5^f#f-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['157.245.247.50']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -82,12 +82,8 @@ WSGI_APPLICATION = 'rwamaganapro.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'rwamaganadb',
-        'USER': 'dbuser',
-        'PASSWORD': '@Django123',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
     }
 }

@@ -74,8 +74,7 @@ class DistrictChartView(View):
                            .filter(kpi_id=self.kwargs['pk'])\
                            .order_by('target')
 
-        kpiname = Umuryango.objects.values('kpi__name').filter(kpi_id=self.kwargs['pk'])
-        return render(request, 'dashboard/kpi_detail.html', {'dataset': dataset}, {'kpiname': kpiname})
+        return render(request, 'dashboard/kpi_detail.html', {'dataset': dataset})
 
 
 # --------------------- view for sector chart -----------------------------------#
