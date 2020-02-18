@@ -2,15 +2,16 @@ from django.contrib import messages
 from django.db import models
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, View, CreateView
+from django.views.generic import ListView, DetailView, View, CreateView, TemplateView
 
 from tablib import Dataset
 
 from .forms import FamilyForm, AddKpiForm, UploadImage
 from .models import Sector, KPI, Umuryango, Cell, Village
-from django.db.models import Sum, Count, F
+from django.db.models import Sum, Count, F, Q
 from .import forms
 from .resources import UmuryangoResource
+
 
 
 class DashboardView(ListView):
@@ -28,7 +29,7 @@ class DashboardView(ListView):
         context['achieved_sector'] = Umuryango.objects.values('kpi__name', 'kpi_id')\
                                                   .annotate(achieved=Sum('achieved'))\
                                                   .annotate(target=Sum('target'))\
-                                                  .filter(sector=self.request.user.user_profile.sector)
+                                                #   .filter(sector=self.request.user.user_profile.sector)
 
         return context
 
@@ -166,3 +167,25 @@ def simple_upload(request):
             return redirect('dashboard')
 
     return render(request, 'umuryango/import.html')
+
+
+class HomePageView(TemplateView):
+    template_name = 'dashboard/home.html'
+
+class SearchResultsView(ListView):
+    model = Umuryango
+    template_name = 'dashboard/results.html'
+
+    
+    def get_queryset(self, *args, **kwargs): 
+        query1 =  self.request.GET.get('forsector')
+        query2 =  self.request.GET.get('forkpi')
+        
+        object_list = Umuryango.objects.filter(
+            Q(sector__name__icontains=query1) & Q(kpi__name__icontains=query2)
+            ).values('kpi__name', 'sector__name','kpi_id') \
+                     .annotate(achieved=Sum('achieved')) \
+                     .annotate(target=Sum('target'))
+        return object_list
+
+  
