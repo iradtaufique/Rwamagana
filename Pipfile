@@ -15,7 +15,10 @@ gunicorn = "*"
 dj-database-url = "*"
 whitenoise = "*"
 django-import-export = "*"
-tablib = {extras = ["xlsx"],version = "*"}
 
 [requires]
 python_version = "3.8"
+
+[packages.tablib]
+extras = [ "xlsx",]
+version = "*"

@@ -134,4 +134,3 @@ class Umuryango(models.Model):
         if len(self.irangamuntu) < 16:
             raise ValidationError('Indangamuntu you entered is less than 16')
 
-

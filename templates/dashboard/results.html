@@ -1,0 +1,70 @@
+{% extends "_base.html" %}
+{% load mathfilters %}
+
+
+{% block content %}
+<h1>Search Results</h1>
+
+<div id="container" style="width:100%; height:400px;">
+
+</div>
+
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">SECTOR</th>
+                    <th scope="col">KPI</th>
+                    <th scope="col">IBYAKOZWE</th>
+                    <th scope="col">IBITARAKORWA</th>
+                    <th scope="col">TARGET</th>
+                </tr>
+            </thead>
+            <tbody>
+
+               
+                <tr>
+                    {% for result in object_list %}
+                    <td>{{ result.sector__name }}</td>
+                    <td>{{ result.kpi__name }}</td>
+                    <td>{{ result.achieved }}</td>
+                    <td>{{ result.target|sub:result.achieved }}</td>
+                    <td>{{ result.target }}</td>
+                    {% endfor %}
+        
+                </tr>
+            </tbody>
+        </table>
+
+
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <script>
+        Highcharts.chart('container', {
+            chart: {
+                type: 'pie'
+            },
+            title: {
+                text: '{% for result in object_list %} {{ result.sector__name }} , {{ result.kpi__name }} {% endfor %}'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            series: [{
+                name: 'Ingo',
+                colorByPoint: true,
+                data: [{
+                    name: 'Ibyakozwe',
+                    y: {% for result in object_list %} {{result.achieved}} {% endfor %}
+                }, {
+                    name: 'Target',
+                    y: {% for result in object_list %} {{result.target}} {% endfor %},
+                    sliced: true,
+                    selected: true
+                }]
+            }]
+        });
+    </script>
+{% endblock %}
+
+
