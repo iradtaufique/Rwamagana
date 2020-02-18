@@ -29,7 +29,7 @@ class DashboardView(ListView):
         context['achieved_sector'] = Umuryango.objects.values('kpi__name', 'kpi_id')\
                                                   .annotate(achieved=Sum('achieved'))\
                                                   .annotate(target=Sum('target'))\
-                                                #   .filter(sector=self.request.user.user_profile.sector)
+                                                #.filter(sector=self.request.user.user_profile.sector)
 
         return context
 
