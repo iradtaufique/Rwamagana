@@ -5,66 +5,94 @@
 {% block content %}
 <h1>Search Results</h1>
 
-<div id="container" style="width:100%; height:400px;">
 
-</div>
-
-
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">SECTOR</th>
-                    <th scope="col">KPI</th>
-                    <th scope="col">IBYAKOZWE</th>
-                    <th scope="col">IBITARAKORWA</th>
-                    <th scope="col">TARGET</th>
-                </tr>
-            </thead>
-            <tbody>
-
-               
-                <tr>
-                    {% for result in object_list %}
-                    <td>{{ result.sector__name }}</td>
-                    <td>{{ result.kpi__name }}</td>
-                    <td>{{ result.achieved }}</td>
-                    <td>{{ result.target|sub:result.achieved }}</td>
-                    <td>{{ result.target }}</td>
-                    {% endfor %}
-        
-                </tr>
-            </tbody>
-        </table>
+<div class="container">
+    <table>
+        <tr>
+            <td style="width: 100%;">
+                <div id="wdr-component"></div>
+            </td>
+            <td>
+    
+            </td>
+        </tr>
+    </table>
+    <div class="mt-5">
+        <h1 class="text-center">Table Results</h1>
+    
+        <div id="highchartsContainer" style="width:100%;height:100%;"></div>
+    </div>
+    </div>
 
 
-    <script src="https://code.highcharts.com/highcharts.src.js"></script>
-    <script>
-        Highcharts.chart('container', {
-            chart: {
-                type: 'pie'
-            },
-            title: {
-                text: '{% for result in object_list %} {{ result.sector__name }} , {{ result.kpi__name }} {% endfor %}'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            series: [{
-                name: 'Ingo',
-                colorByPoint: true,
-                data: [{
-                    name: 'Ibyakozwe',
-                    y: {% for result in object_list %} {{result.achieved}} {% endfor %}
-                }, {
-                    name: 'Target',
-                    y: {% for result in object_list %} {{result.target}} {% endfor %},
-                    sliced: true,
-                    selected: true
-                }]
+
+<script>
+    var pivot = new WebDataRocks({
+    container: "#wdr-component",
+    beforetoolbarcreated: customizeToolbar,
+    toolbar: true,
+    report: {
+        "dataSource": {
+            "dataSourceType": "json",
+            "data": getJSONData()
+        },
+        slice: {
+            rows: [{
+                uniqueName: "KPI Name"
+            }, {
+                uniqueName: "Measures"
+            }],
+            columns: [{
+                uniqueName: "Sector"
+            }],
+            measures: [{
+                uniqueName: "Ibyakozwe"
+            }, {
+                uniqueName: "Intego"
             }]
-        });
-    </script>
+        }
+    },
+    reportcomplete: function() {
+        pivot.off("reportcomplete");
+        createChart();
+    }
+});
+
+function customizeToolbar(toolbar) {
+    var tabs = toolbar.getTabs(); // get all tabs from the toolbar
+    toolbar.getTabs = function() {
+        delete tabs[0]; // delete the first tab
+        delete tabs[1]; // delete the second tab
+        delete tabs[2]; // delete the third tab
+        return tabs;
+    }
+}
+
+function createChart() {
+    pivot.highcharts.getData({
+        type: "column"
+    }, function(data) {
+        Highcharts.chart("highchartsContainer", data);
+    }, function(data) {
+        Highcharts.chart("highchartsContainer", data);
+    });
+}
+
+function getJSONData() {
+    return [ {% for item in object_list %}
+        {
+        "KPI Name": " {{item.kpi__name}} ",
+        "Sector": "{{ item.sector__name }}",
+        "Ibyakozwe": "{{item.achieved}}",
+        "Intego": "{{ item.target}}"
+    },
+
+        {% endfor %}]
+}
+</script>
+
+
+
 {% endblock %}
 
 

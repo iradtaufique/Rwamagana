@@ -8,43 +8,28 @@
         <div class="form-row">
             <div class="col-md-4 mb-3">
                 <label for="validationCustom01">SECTOR</label>
-                <!-- <input type="text" class="form-control" id="validationCustom01" placeholder="Sector" name="forsector"  required> -->
                 <select class="form-control" id="exampleFormControlSelect1" name="forsector" >
-                    <option>Kigabiro</option>
-                    <option>Musha</option>
-                    <option>Nyakaliro</option>
-                    <option>Nzige</option>
-                    <option>Muyumbu</option>
-                    <option>Mwulire</option>
-                    <option>Munyiginya</option>
-                    <option>Fumbwe</option>
-                    <option>Muhazi</option>
-                    <option>Gishali</option>
-                    <option>Rubona</option>
-                    <option>Gahengeri</option>
-                    <option>Munyaga</option>
-                    <option>Karenge</option>
+                    {% for sector in sectors %}
+                    <option>{{ sector.name }}</option>
+                    {% endfor %}
                 </select>
             </div>
+
             <div class="col-md-4 mb-3">
                 <label for="validationCustom02">KPI</label>
-                <!-- <input type="text" class="form-control" id="validationCustom02" placeholder="Kpi" name="forkpi" required> -->
                 <select class="form-control" id="exampleFormControlSelect1" name="forkpi" >
-                    <option>Imirire mibi</option>
-                    <option>Ingo zidafite inzu</option>
-                    <option>Ingo zifite amazu ameze nka nyakatsi</option>
-                    <option>Ingo zidafite ubwiherero namba</option>
-                    <option>Ingo zifite ubwiherero butujuje ibisabwa</option>
-                    <option>Ingo zibana n' amatungo</option>
-                    <option>Abarwaye amavunja</option>
+                    {% for kpi in kpis %}
+                    <option value="none" selected disabled hidden> 
+                        All kpis
+                    </option> 
+                    <option>{{ kpi.name }}</option>
+                    {% endfor %}
                 </select>
             </div>
 
         </div>
 
-    <button class="btn btn-info" type="submit">Search</button>
- 
-
+        <button class="btn btn-info" type="submit">Search</button>
     </form>
 </div>
 

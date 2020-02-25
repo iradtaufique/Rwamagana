@@ -29,7 +29,7 @@ class DashboardView(ListView):
         context['achieved_sector'] = Umuryango.objects.values('kpi__name', 'kpi_id')\
                                                   .annotate(achieved=Sum('achieved'))\
                                                   .annotate(target=Sum('target'))\
-                                                #.filter(sector=self.request.user.user_profile.sector)
+                                                .filter(sector=self.request.user.user_profile.sector)
 
         return context
 
@@ -170,7 +170,17 @@ def simple_upload(request):
 
 
 class HomePageView(TemplateView):
+    model = Sector
     template_name = 'dashboard/home.html'
+    
+  
+
+    def get_context_data(self, **kwargs):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        context['sectors'] = Sector.objects.all()
+        context['kpis'] = KPI.objects.all()
+        return context
+
 
 class SearchResultsView(ListView):
     model = Umuryango
@@ -180,9 +190,11 @@ class SearchResultsView(ListView):
     def get_queryset(self, *args, **kwargs): 
         query1 =  self.request.GET.get('forsector')
         query2 =  self.request.GET.get('forkpi')
+
+        # query3 = self.request.GET.get()
         
         object_list = Umuryango.objects.filter(
-            Q(sector__name__icontains=query1) & Q(kpi__name__icontains=query2)
+            Q(sector__name__iexact=query1) &  Q(kpi__name__iexact=query2)
             ).values('kpi__name', 'sector__name','kpi_id') \
                      .annotate(achieved=Sum('achieved')) \
                      .annotate(target=Sum('target'))
