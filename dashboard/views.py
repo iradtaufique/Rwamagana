@@ -29,8 +29,7 @@ class DashboardView(ListView):
         context['achieved_sector'] = Umuryango.objects.values('kpi__name', 'kpi_id')\
                                                   .annotate(achieved=Sum('achieved'))\
                                                   .annotate(target=Sum('target'))\
-                                                #   .filter(sector=self.request.user.user_profile.sector)
-
+                                                  .filter(sector=self.request.user.user_profile.sector)
         return context
 
 
@@ -83,12 +82,20 @@ class SectorChartView(View):
     def get(self, request, pk):
         dataset = Umuryango.objects.values('kpi__name', 'sector__name').annotate(targ=Sum('target')) \
                            .annotate(achiev=Sum('achieved')) \
-                           .filter(kpi_id=self.kwargs['pk']) \
                            .filter(sector=self.request.user.user_profile.sector) \
+                           .filter(kpi_id=self.kwargs['pk']) \
                            .order_by('target')
 
         return render(request, 'dashboard/kpi_detail.html', {'dataset': dataset})
 
+
+# --------------------- view for sector chart and table with all kpi -----------------------------#
+class SectorChartTableView(View):
+    def get(self, request):
+        dataset = Umuryango.objects.values('kpi__name', 'sector__name').annotate(targ=Sum('target')) \
+                           .annotate(achiev=Sum('achieved')) \
+                           
+        return render(request, 'dashboard/kpi_detail.html', {'dataset': dataset})
 
 # --------------------- view for add new family -----------------------------------#
 class CreateFamily(CreateView):
