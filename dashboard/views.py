@@ -29,7 +29,7 @@ class DashboardView(ListView):
         context['achieved_sector'] = Umuryango.objects.values('kpi__name', 'kpi_id')\
                                                   .annotate(achieved=Sum('achieved'))\
                                                   .annotate(target=Sum('target'))\
-                                                .filter(sector=self.request.user.user_profile.sector)
+                                                #   .filter(sector=self.request.user.user_profile.sector)
 
         return context
 
@@ -81,7 +81,7 @@ class DistrictChartView(View):
 # --------------------- view for sector chart -----------------------------------#
 class SectorChartView(View):
     def get(self, request, pk):
-        dataset = Umuryango.objects.values('kpi__name').annotate(targ=Sum('target')) \
+        dataset = Umuryango.objects.values('kpi__name', 'sector__name').annotate(targ=Sum('target')) \
                            .annotate(achiev=Sum('achieved')) \
                            .filter(kpi_id=self.kwargs['pk']) \
                            .filter(sector=self.request.user.user_profile.sector) \
