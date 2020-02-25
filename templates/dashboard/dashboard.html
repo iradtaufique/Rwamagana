@@ -67,11 +67,15 @@
 
       {% else %}
 
-      <!--if user is from sector-->
+<!----------------if user is from sector--------------------------------->
       {% if user.user_profile.role == 1 %}
           <div class="container text-center">
               <div class="col-lg-12 bg-white p-3 mb-2">
                   <h3>{{user.user_profile.sector}} Sector Human Security issues </h3>
+              </div>
+
+             <div class="col-lg-12 bg-white p-3 mb-2">
+                  <a href="{% url 'all_kpi_per_Sector' %}"> view all KPI Data </a>
               </div>
            </div>
 
@@ -106,15 +110,15 @@
            {% endfor %}
       {% else %}
 
-          <!----------------  if user is from district    --------------------->
+<!----------------  if user is from district    --------------------->
           <div class="container text-center">
               <div class="col-lg-12 bg-white p-3 mb-2">
                   {% comment %}TODO: make date dynamic {% endcomment %}
                   <h3>{{ user.user_profile.sector.district }} District Human Security Issues - {% now "M Y" %} </h3>
               </div>
 
-     <!------------------------------------------------------------------------------------------>
-     <!-------------------------snippets for making search and view kpi and all sectors---------->
+             <!------------------------------- District level ------------------------------------------->
+              <!-------------------------snippets for making search and view kpi and all sectors---------->
 
           <div class="col-lg-12 bg-white p-3 mb-2">
               <div class="row">
@@ -129,8 +133,8 @@
                 </div>
               </div>
           </div>
-     <!------------------------------------------------------------------------------------------>
-     <!-------------------------end for making search and view kpi and all sectors---------->
+     <!-----------------------------------------at top level -------------------------------->
+     <!-------------------------end for making search and view kpi and all sectors ---------->
 
         </div>
 

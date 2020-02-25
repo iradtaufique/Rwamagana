@@ -77,6 +77,15 @@ class DistrictChartView(View):
         return render(request, 'dashboard/kpi_detail.html', {'dataset': dataset})
 
 
+# --------------------- view for all sector chart and table with all kpi for District level ---------------#
+class All_Sector_Kpi_Chart(View):
+    def get(self, request):
+        dataset = Umuryango.objects.values('kpi__name', 'sector__name').annotate(targ=Sum('target')) \
+                           .annotate(achiev=Sum('achieved')) \
+
+        return render(request, 'dashboard/kpi_detail.html', {'dataset': dataset})
+
+
 # --------------------- view for sector chart -----------------------------------#
 class SectorChartView(View):
     def get(self, request, pk):
@@ -89,13 +98,14 @@ class SectorChartView(View):
         return render(request, 'dashboard/kpi_detail.html', {'dataset': dataset})
 
 
-# --------------------- view for sector chart and table with all kpi -----------------------------#
-class SectorChartTableView(View):
+# --------------------- view for all Kpi per Sector sector  -----------------------------------#
+class All_Kpi_PerSector_Chart(View):
     def get(self, request):
         dataset = Umuryango.objects.values('kpi__name', 'sector__name').annotate(targ=Sum('target')) \
                            .annotate(achiev=Sum('achieved')) \
-                           
+                           .filter(sector=self.request.user.user_profile.sector)
         return render(request, 'dashboard/kpi_detail.html', {'dataset': dataset})
+
 
 # --------------------- view for add new family -----------------------------------#
 class CreateFamily(CreateView):
