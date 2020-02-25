@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (DashboardView, KPIDetailView, Ibyakozwe, DistrictChartView,
-                    SectorChartView, CreateFamily, AddKpi, load_cells, load_village, uploadImage, simple_upload, HomePageView, SearchResultsView)
+                    SectorChartView, SectorChartTableView, CreateFamily, AddKpi, load_cells, load_village, uploadImage, simple_upload, HomePageView, SearchResultsView)
 
 urlpatterns = [
     path('', DashboardView.as_view(), name='dashboard'),
@@ -11,6 +11,7 @@ urlpatterns = [
     path('ibisigaye_sector/<int:pk>', Ibyakozwe.as_view(), name='ibisigaye_sector'),
     path('kpi/charts/<int:pk>', DistrictChartView.as_view(), name='kpi_charts'),
     path('sector_chart/charts/<int:pk>', SectorChartView.as_view(), name='sector_charts'),
+    path('sector_allKPI/table/', SectorChartTableView.as_view(), name='all_sector_kpi'),
     path('add_family', CreateFamily.as_view(), name='family'),
     path('add_kpi', AddKpi.as_view(), name='add_kpi'),
     path('status/<int:pk>', uploadImage, name='status_change'),

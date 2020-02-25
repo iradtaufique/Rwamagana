@@ -58,7 +58,7 @@
               <!-- Navbar Header-->
               <div class="navbar-header">
                 <!-- Navbar Brand --><a href="{% url 'dashboard' %}" class="navbar-brand d-none d-sm-inline-block">
-                  <div class="brand-text d-none d-lg-inline-block"><img src="{% static 'img/rwanda_logo.png' %}" alt="" width="60"> <span>Rwamagana Human Security Issues Reporting System </span><strong></strong></div>
+                  <div class="brand-text d-none d-lg-inline-block"><img src="{% static 'img/rwanda_logo.png' %}" alt="" width="60"> <span>{{user.user_profile.sector.district}} Human Security Issues Reporting System </span><strong></strong></div>
                   <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>BD</strong></div></a>
                 <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
               </div>
@@ -147,7 +147,6 @@
                   <ul id="adddata" class="collapse list-unstyled ">
                       <li><a href="{% url 'family' %}">Add Family</a></li>
                     <li><a href="{% url 'import' %}">Import Data</a></li>
-                    <li><a href="{% url 'search' %}">Do Search</a></li>
 {#                    <li><a href="">Create Report</a></li>#}
                     </ul>
                 </li>
@@ -173,7 +172,7 @@
             <div class="container-fluid">
               <div class="row">
                 <div class="col-sm-6">
-                  <p>Rwamagana District &copy; 2019</p>
+                  <p>Rwamagana District &copy; {% now "Y" %}</p>
                 </div>
                 <div class="col-sm-6 text-right">
                   <p>By <a href="#" class="external">Pelin</a></p>

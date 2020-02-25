@@ -3,33 +3,34 @@
 
 
 {% block content %}
-<div class="mt-4">
+<div class=" container mt-4">
     <form class="needs-validation" novalidate action="{% url 'search_results' %}" method="get">
-        <div class="form-row">
+        <div class="form-row ml-5 mb-3">
             <div class="col-md-4 mb-3">
-                <label for="validationCustom01">SECTOR</label>
+                <label for="validationCustom01">SECTOR NAME</label>
                 <select class="form-control" id="exampleFormControlSelect1" name="forsector" >
                     {% for sector in sectors %}
+
                     <option>{{ sector.name }}</option>
+
                     {% endfor %}
                 </select>
             </div>
 
-            <div class="col-md-4 mb-3">
-                <label for="validationCustom02">KPI</label>
+            <div class="col-md-4 mb-3 ml-4">
+                <label for="validationCustom02">KPI NAME</label>
                 <select class="form-control" id="exampleFormControlSelect1" name="forkpi" >
                     {% for kpi in kpis %}
-                    <option value="none" selected disabled hidden> 
-                        All kpis
-                    </option> 
+            
                     <option>{{ kpi.name }}</option>
+
                     {% endfor %}
                 </select>
             </div>
-
+           
         </div>
-
-        <button class="btn btn-info" type="submit">Search</button>
+        <button class="btn btn-success ml-5" type="submit">Search</button>
+        
     </form>
 </div>
 
