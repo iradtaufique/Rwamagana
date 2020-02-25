@@ -41,6 +41,7 @@
     <script>
     var pivot = new WebDataRocks({
     container: "#wdr-component",
+    beforetoolbarcreated: customizeToolbar,
     toolbar: true,
     report: {
         "dataSource": {
@@ -78,6 +79,16 @@ function createChart() {
         Highcharts.chart("highchartsContainer", data);
     });
 }
+ 
+function customizeToolbar(toolbar) {
+        var tabs = toolbar.getTabs(); // get all tabs from the toolbar
+        toolbar.getTabs = function() {
+            delete tabs[0]; // delete the first tab
+            delete tabs[1]; // delete the second tab
+            delete tabs[2]; // delete the third tab
+            return tabs;
+        }
+    }
 
 function getJSONData() {
 
@@ -132,6 +143,7 @@ function getJSONData() {
     <script>
     var pivot = new WebDataRocks({
     container: "#wdr-component",
+    beforetoolbarcreated: customizeToolbar,
     toolbar: true,
     report: {
         "dataSource": {
@@ -169,6 +181,15 @@ function createChart() {
         Highcharts.chart("highchartsContainer", data);
     });
 }
+function customizeToolbar(toolbar) {
+        var tabs = toolbar.getTabs(); // get all tabs from the toolbar
+        toolbar.getTabs = function() {
+            delete tabs[0]; // delete the first tab
+            delete tabs[1]; // delete the second tab
+            delete tabs[2]; // delete the third tab
+            return tabs;
+        }
+    }
 
 function getJSONData() {
 
@@ -220,6 +241,7 @@ function getJSONData() {
     <script>
     var pivot = new WebDataRocks({
     container: "#wdr-component",
+    beforetoolbarcreated: customizeToolbar,
     toolbar: true,
     report: {
         "dataSource": {
@@ -257,6 +279,15 @@ function createChart() {
         Highcharts.chart("highchartsContainer", data);
     });
 }
+function customizeToolbar(toolbar) {
+        var tabs = toolbar.getTabs(); // get all tabs from the toolbar
+        toolbar.getTabs = function() {
+            delete tabs[0]; // delete the first tab
+            delete tabs[1]; // delete the second tab
+            delete tabs[2]; // delete the third tab
+            return tabs;
+        }
+    }
 
 function getJSONData() {
 
@@ -309,6 +340,7 @@ function getJSONData() {
     <script>
     var pivot = new WebDataRocks({
     container: "#wdr-component",
+    beforetoolbarcreated: customizeToolbar,
     toolbar: true,
     report: {
         "dataSource": {
@@ -346,6 +378,16 @@ function createChart() {
         Highcharts.chart("highchartsContainer", data);
     });
 }
+
+function customizeToolbar(toolbar) {
+        var tabs = toolbar.getTabs(); // get all tabs from the toolbar
+        toolbar.getTabs = function() {
+            delete tabs[0]; // delete the first tab
+            delete tabs[1]; // delete the second tab
+            delete tabs[2]; // delete the third tab
+            return tabs;
+        }
+    }
 
 function getJSONData() {
 

@@ -26,73 +26,71 @@
 
 
 
-<script>
-    var pivot = new WebDataRocks({
-    container: "#wdr-component",
-    beforetoolbarcreated: customizeToolbar,
-    toolbar: true,
-    report: {
-        "dataSource": {
-            "dataSourceType": "json",
-            "data": getJSONData()
+
+    <script>
+        var pivot = new WebDataRocks({
+        container: "#wdr-component",
+        beforetoolbarcreated: customizeToolbar,
+        toolbar: true,
+        report: {
+            "dataSource": {
+                "dataSourceType": "json",
+                "data": getJSONData()
+            },
+            slice: {
+                rows: [{
+                    uniqueName: "KPI Name"
+                }, {
+                    uniqueName: "Measures"
+                }],
+                columns: [{
+                    uniqueName: "Sector"
+                }],
+                measures: [{
+                    uniqueName: "Ibyakozwe"
+                }, {
+                    uniqueName: "Intego"
+                }]
+            }
         },
-        slice: {
-            rows: [{
-                uniqueName: "KPI Name"
-            }, {
-                uniqueName: "Measures"
-            }],
-            columns: [{
-                uniqueName: "Sector"
-            }],
-            measures: [{
-                uniqueName: "Ibyakozwe"
-            }, {
-                uniqueName: "Intego"
-            }]
+        reportcomplete: function() {
+            pivot.off("reportcomplete");
+            createChart();
         }
-    },
-    reportcomplete: function() {
-        pivot.off("reportcomplete");
-        createChart();
-    }
-});
-
-function customizeToolbar(toolbar) {
-    var tabs = toolbar.getTabs(); // get all tabs from the toolbar
-    toolbar.getTabs = function() {
-        delete tabs[0]; // delete the first tab
-        delete tabs[1]; // delete the second tab
-        delete tabs[2]; // delete the third tab
-        delete tabs[4]; // delete the fifth tab
-        delete tabs[6]; // delete the fifth tab
-        delete tabs[9]; // delete the fifth tab
-        return tabs;
-    }
-}
-
-function createChart() {
-    pivot.highcharts.getData({
-        type: "column"
-    }, function(data) {
-        Highcharts.chart("highchartsContainer", data);
-    }, function(data) {
-        Highcharts.chart("highchartsContainer", data);
     });
-}
-
-function getJSONData() {
-    return [ {% for item in object_list %}
-        {
-        "KPI Name": " {{item.kpi__name}} ",
-        "Sector": "{{ item.sector__name }}",
-        "Ibyakozwe": "{{item.achieved}}",
-        "Intego": "{{ item.target}}"
-    },
-
-        {% endfor %}]
-}
-</script>
+    
+    function customizeToolbar(toolbar) {
+        var tabs = toolbar.getTabs(); // get all tabs from the toolbar
+        toolbar.getTabs = function() {
+            delete tabs[0]; // delete the first tab
+            delete tabs[1]; // delete the second tab
+            delete tabs[2]; // delete the third tab
+            return tabs;
+        }
+    }
+    
+    function createChart() {
+        pivot.highcharts.getData({
+            type: "column"
+        }, function(data) {
+            Highcharts.chart("highchartsContainer", data);
+        }, function(data) {
+            Highcharts.chart("highchartsContainer", data);
+        });
+    }
+    
+    function getJSONData() {
+        return [ {% for item in object_list %}
+            {
+            "KPI Name": " {{item.kpi__name}} ",
+            "Sector": "{{ item.sector__name }}",
+            "Ibyakozwe": "{{item.achieved}}",
+            "Intego": "{{ item.target}}"
+        },
+    
+            {% endfor %}]
+    }
+    </script>
 
 
 
